@@ -1,5 +1,6 @@
 package com.example.supercompare.Model;
 
+//products in FireBase DB
 public class Product implements Comparable{
     private String name,description,image,menuID;
     private String priceRamiLevi,priceShufersal,priceVictory,priceMega,priceYinotBitan;

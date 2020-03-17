@@ -55,10 +55,6 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
     List<Comparison> cart = new ArrayList<>();
     CartAdapter adapter;
 
-    public String getSupermarketName() {
-        return supermarketName;
-    }
-
     public void setSupermarketName(String supermarketName) {
         this.supermarketName = supermarketName;
     }
@@ -70,7 +66,7 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
         setContentView(R.layout.activity_cart);
 
         database = FirebaseDatabase.getInstance();
-        request = database.getReference("Request");
+        request = database.getReference("Request"); //use sql
         recyclerView = findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -95,7 +91,6 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         setNavigationViewListener();
         View headerView = navigationView.getHeaderView(0);
@@ -114,12 +109,10 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
         loadListProducts();
     }
 
-    private void loadListProducts() {
+    private void loadListProducts() { //load the products from the cart that built
         cart = new Database(this).getCarts();
         adapter = new CartAdapter(cart,this);
         recyclerView.setAdapter(adapter);
-
-
 
         double totalRamiLevi=0, totalShufersal=0, totalVictory=0, totalYinotBitan=0, totalMega=0;
         for (Comparison comparison: cart){
@@ -132,7 +125,7 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
         Locale locale = new Locale("he","IL");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
 
-        //find the best price in total
+        //find the best price in total from all stores
         Map<String,Double> pricesMap = new HashMap<>();
         pricesMap.put("Rami Levi", totalRamiLevi);
         pricesMap.put("Shufersal", totalShufersal);

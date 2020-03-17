@@ -20,6 +20,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.itemClickListener = itemClickListener;
     }
 
+    //set menu item
     public MenuViewHolder(@NonNull View itemView) {
         super(itemView);
         txtMenuName = itemView.findViewById(R.id.menu_name);

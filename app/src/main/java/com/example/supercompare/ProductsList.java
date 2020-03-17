@@ -114,6 +114,7 @@ public class ProductsList extends AppCompatActivity implements NavigationView.On
                 return false;
             }
 
+            //goto specific product on the search bar
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (newText != null && !newText.isEmpty()) {
@@ -142,11 +143,13 @@ public class ProductsList extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Product clicked;
+                //check which item clicked
                 clicked = productsFound.get(position);
                 for (Product p: listOfProducts){
                     if (clicked == p)
                         posInOriginalList = listOfProducts.indexOf(p);
                 }
+                //move to specific detail about product
                 Intent productDetail = new Intent(ProductsList.this,ProductDetail.class);
                 productDetail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 productDetail.putExtra("productID",adapter.getRef(posInOriginalList).getKey()); //sent product id to new activity

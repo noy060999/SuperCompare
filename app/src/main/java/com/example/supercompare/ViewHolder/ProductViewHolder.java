@@ -20,7 +20,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         this.itemClickListener = itemClickListener;
     }
 
-
+    //set product item
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
         product_name = itemView.findViewById(R.id.product_name);

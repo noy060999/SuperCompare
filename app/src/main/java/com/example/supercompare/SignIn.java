@@ -46,14 +46,15 @@ public class SignIn extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                        if (dataSnapshot.child(edtPhone.getText().toString()).exists()) { //check if user already exist
                             mDialog.dismiss();
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
-                            //user.setPhone(edtPhone.getText().toString());
                             if (user.getPassword()!=null) {
                                 if (user.getPassword().equals(edtPassword.getText().toString())) {
                                     Common.currentUser = user;
                                     Toast.makeText(SignIn.this, "Sign In Successfully!", Toast.LENGTH_SHORT).show();
+
+                                    //move to home intent
                                     Intent homeIntent = new Intent(SignIn.this, Home.class);
                                     startActivity(homeIntent);
                                     finish();
@@ -65,6 +66,7 @@ public class SignIn extends AppCompatActivity {
                         }
                         else {
                             mDialog.dismiss();
+                            //user doesn't exist
                             Toast.makeText(SignIn.this, "User doesn't exist in database!", Toast.LENGTH_SHORT).show();
                         }
                     }

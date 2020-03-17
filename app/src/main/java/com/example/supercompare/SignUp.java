@@ -44,7 +44,7 @@ public class SignUp extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(edtPhoneSignUp.getText().toString()).exists()){
+                        if (dataSnapshot.child(edtPhoneSignUp.getText().toString()).exists()){ //check if user exists
                             mDialog.dismiss();
                             if (notExist == true)
                                 Toast.makeText(SignUp.this, "Signed Up Successfully!", Toast.LENGTH_SHORT).show();

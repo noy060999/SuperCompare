@@ -1,5 +1,6 @@
 package com.example.supercompare.Model;
 
+//users in FireBase DB
 public class User {
     private String name;
     private String password;

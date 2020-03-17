@@ -64,11 +64,11 @@ public class ProductDetail extends AppCompatActivity implements NavigationView.O
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         setNavigationViewListener();
         View headerView = navigationView.getHeaderView(0);
         openDrawerProducts = findViewById(R.id.openDrawerDetails);
+        //three dots button clicked : open navigation drawer
         openDrawerProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,9 +78,9 @@ public class ProductDetail extends AppCompatActivity implements NavigationView.O
 
 
         database = FirebaseDatabase.getInstance();
-        products = database.getReference("Product");
+        products = database.getReference("Product"); //use products from firebase
 
-        numberButton = findViewById(R.id.number_button);
+        numberButton = findViewById(R.id.number_button); //quantity
         btnCart = findViewById(R.id.btnCart);
         pricesTitle = findViewById(R.id.prices_title);
         pricesTitle.setTextSize(15);
@@ -131,6 +131,7 @@ public class ProductDetail extends AppCompatActivity implements NavigationView.O
                 Picasso.with(getBaseContext()).load(product.getImage()).into(img_product);
                 collapsingToolbarLayout.setTitle(product.getName());
 
+                //set all info on specific product by productID
                 product_price_ramilevi.setText(product.getPriceRamiLevi());
                 product_price_shufersal.setText(product.getPriceShufersal());
                 product_price_yinotbitan.setText(product.getPriceYinotBitan());
@@ -165,12 +166,14 @@ public class ProductDetail extends AppCompatActivity implements NavigationView.O
         switch (item.getItemId()) {
 
             case R.id.nav_my_cart: {
+                //cart option clicked : move to cart activity
                 Intent intent = new Intent(ProductDetail.this,Cart.class);
                 startActivity(intent);
                 break;
             }
 
             case R.id.nav_logout:{
+                //logout option clicked : move to main activity
                 Intent loginScreen=new Intent(this,MainActivity.class);
                 loginScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(loginScreen);

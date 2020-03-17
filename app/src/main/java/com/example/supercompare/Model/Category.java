@@ -1,5 +1,6 @@
 package com.example.supercompare.Model;
 
+//categories in the FireBase DB
 public class Category {
 
     private String name;

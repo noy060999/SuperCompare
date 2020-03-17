@@ -63,7 +63,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("Category");
+        category = database.getReference("Category"); //use categories from firebase
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -104,7 +104,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Toast.makeText(Home.this, ""+clickItem.getName(),Toast.LENGTH_SHORT).show();
+                        //move to product list when any category clicked
+                        //send category id to move into specific product list
                         Intent productsList= new Intent(Home.this,ProductsList.class);
                         productsList.putExtra("CategoryID",adapter.getRef(position).getKey());
                         startActivity(productsList);
@@ -134,12 +135,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         switch (item.getItemId()) {
 
             case R.id.nav_my_cart: {
+                //cart option clicked : move to cart activity
                 Intent intent = new Intent(Home.this,Cart.class);
                 startActivity(intent);
                 break;
             }
 
             case R.id.nav_logout:{
+                //logout option clicked : move to main activity
                 Intent loginScreen=new Intent(this,MainActivity.class);
                 loginScreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(loginScreen);

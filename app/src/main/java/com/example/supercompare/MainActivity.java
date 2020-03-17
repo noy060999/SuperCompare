@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //sign in button clicked : move to login activity
                 Intent intentSignIn = new Intent(MainActivity.this,SignIn.class);
                 startActivity(intentSignIn);
             }
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //sign up button clicked : move to sign up activity
                 Intent intentSignUp = new Intent(MainActivity.this,SignUp.class);
                 startActivity(intentSignUp);
             }
