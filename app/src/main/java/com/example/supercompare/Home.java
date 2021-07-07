@@ -3,6 +3,7 @@ package com.example.supercompare;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -82,6 +83,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         View headerView = navigationView.getHeaderView(0);
         txtFullName = headerView.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
+        Log.d("signup", "onCreate: Home " + Common.currentUser.getName());
 
         //Load Menu
         recycler_menu = findViewById(R.id.recycler_menu);
